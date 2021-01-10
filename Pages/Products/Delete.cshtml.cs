@@ -29,7 +29,7 @@ namespace Stanciu_Madalina_Proiect_Medii.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ID == id);
+            Product = await _context.Product.Include(i => i.Producer).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Product == null)
             {
@@ -45,7 +45,7 @@ namespace Stanciu_Madalina_Proiect_Medii.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FindAsync(id);
+            Product = await _context.Product.Include(i => i.Producer).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Product != null)
             {
